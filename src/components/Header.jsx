@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react";
-import {
-  AppBar,
-  Avatar,
-  IconButton,
-  makeStyles,
-  Toolbar,
-  alpha,
-  Button,
-  Typography,
-} from "@material-ui/core";
-import logo from "../assets/images/netflix-logo.png";
+import {AppBar,  Avatar,  IconButton,  Toolbar,  Button, } from "@material-ui/core";
+
 import { useHistory } from "react-router";
+import {useDispatch} from  'react-redux'
 import InputBase from "@material-ui/core/InputBase";
 import SearchIcon from "@material-ui/icons/Search";
 import avatar from "../assets/images/netflixavatar_red.png";
+import {setSearchInputValue} from  '../actions/index'
+import logo from "../assets/images/netflix-logo.png";
+import useStyleHeader from "../styles/components/StyleHeader";
 const Header = () => {
-  const classes = useStyles();
+  const classes = useStyleHeader();
   const [show, setShow] = useState(false);
   const [inputsearch, setInputSearch] = useState("");
   const history = useHistory();
+  const dispatch=useDispatch()
 
   const hideHeader = () => {
     if (window.scrollY > 100) {
@@ -29,7 +25,22 @@ const Header = () => {
   };
   const handleChange = (event) => {
     setInputSearch(event.target.value);
+    dispatch(setSearchInputValue(event.target.value))
+    if(event.target.value.length > 0){
+      history.push(`/search?q=${event.target.value}`);     
+
+    }else{
+      history.push("/");
+    }
+
+
   };
+
+  const handleHome = () => {
+    dispatch(setSearchInputValue(""))
+    setInputSearch("")
+    history.push("/")
+  }
 
   useEffect(() => {
     window.addEventListener("scroll", hideHeader);
@@ -45,15 +56,16 @@ const Header = () => {
     >
       <Toolbar className={classes.toolbar}>
         <div className={classes.Izquierda}>
-          <IconButton onClick={() => history.push("/")}>
+          <IconButton onClick={handleHome}>
             <img src={logo} al="logo" className={classes.logo} />
           </IconButton>
           <Button color="inherit" variant="text" onClick={ ()=>  history.push("/genero") }  >
             Peliculas
           </Button>
-          <Button color="inherit" variant="text" onClick={ ()=>  history.push("/genero") }>
+          <Button color="inherit" variant="text" onClick={ ()=>  history.push("/mylist") }>
             Mi Lista
           </Button>
+    
         </div>
 
         <div className={classes.Lateral}>
@@ -85,90 +97,5 @@ const Header = () => {
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {  
-    top: 0,
-    lef: 0,
-    right: 0,
-    position: "fixed",
-    zIndex:999, 
-     background:"linear-gradient(to bottom, rgba(22, 22, 22, 0.801), rgba(22, 22, 22, 0.493), transparent)",
-     fontSize:"font-size: 1.4rem"
-   
-  },
-  toolbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "item",
-  },
-
-  logo: {
-    width: "100px",
-    cursor: "pointer",
-  },
-  scrolled : {
-    //backgroundColor: "transparent",
-    //backgroundColor: "#111",
-    background:"linear-gradient(to bottom, rgb(0, 0, 0) 10%, rgb(8, 8, 8) 50%, rgb(17, 17, 17) 100%)",
-    opacity:"0.9" ,
-  },
-  Lateral: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "item",
-    gap: 10 /* distancia*/,
-  },
-  Izquierda: {
-    display: "flex",
-    
-    "& button":{
-      
-    },
-    "& button:hover":{
-      color: "#b3b3b3",
-    
-      
-    }
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
-}));
 
 export default Header;

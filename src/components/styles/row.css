@@ -4,8 +4,9 @@
     left: 0;
     top: -12rem;
     width: 100%;
-    /* overflow-x: hidden; */
+     overflow-x: hidden; 
 }
+ 
 
 .row {
     padding: 0;
@@ -28,6 +29,8 @@
     overflow-y: hidden;
     padding: 1rem 0 1rem 3vw;
 }
+
+
 
 .pagination {
     position: absolute;
@@ -81,9 +84,10 @@
     transition: all 0.2s;
 }
 
+
 .row__poster:hover {
     filter: brightness(1.1);
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .info__overlay {

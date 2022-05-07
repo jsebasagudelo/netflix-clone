@@ -1,16 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-
+import React from "react";
+import ReactDOM from "react-dom";
+import { createStore, applyMiddleware, compose } from "redux";
+import { Provider } from "react-redux";
 import App from "./routes/App";
-import AuthContextProvider from './contexts/AuthContext';
 
-ReactDOM.render(
-     
-  <AuthContextProvider>
-        <App />
-  </AuthContextProvider>
+import rootReducer from "./redux/rootReducers";
 
-  ,
-  document.getElementById('root')
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__
+    ? window.__REDUX_DEVTOOLS_EXTENSION__()
+    : undefined
 );
 
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);

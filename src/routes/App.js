@@ -1,78 +1,49 @@
-import { useContext, Suspense, lazy } from "react";
-import { makeStyles } from "@material-ui/core";
-import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
-import { AuthContext } from "../contexts/AuthContext";
-import Home from "../Pages/Home";
-import Login from "../Pages/Login";
-import Profile from "../Pages/Profile";
-import Genero from "../Pages/Genero";
-import NotFound from "../components/NotFound";
-import MovieDetail from "../components/MovieDetail";
+import React from "react";
 
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+import Home from "../pages/Home";
+import Profile from "../pages/Profile";
+import Genero from "../pages/Genero";
+import NotFound from "../components/NotFound";
 import "../components/styles/App.css";
-import Row from "../components/Row";
-import Layout from "../components/Layout";
-import ComponentRender from "../components/render";
+import Search from "../pages/Search";
+import Mylist from "../components/Mylist";
+import { useSelector } from "react-redux";
+import useStylesApp from "../styles/components/StylesApp";
 
 function App() {
-  const classes = useStyles();
-  const user="jsagudelo"
-  //const user = useContext(AuthContext);
-  //console.log("datos user:" + user);
+  const classes = useStylesApp();
+  const { user } = useSelector((state) => ({ ...state }));
+  const userName = "";
+  console.log(user.userInfo);
 
   return (
     <div className={classes.root}>
-      {/*
-      
-      
-      */}
       <BrowserRouter>
-        <Layout>
-          {!user ? (
-            <Login />
-          ) : (
-            <Switch>
-             
-             <Route path="/test" exact>
-                  <ComponentRender />
-                </Route>
-                <Route path="/profile" exact>
-                  <Profile />
-                </Route>
-                <Route path="/genero" exact>
-                  <Genero />
-                </Route>
-                <Route path="/detail/:id">
-                  <MovieDetail />
-                </Route>
-               
-                <Route path="/row" exact>
-                  <Row />
-                </Route>
-                <Route path="/" exact>
-                  <Home />
-                </Route>
+        <Switch>
+          <Route path="/profile" exact>
+            <Profile />
+          </Route>
+          <Route path="/genero" exact>
+            <Genero />
+          </Route>
+          <Route path="/mylist" exact>
+            <Mylist />
+          </Route>
 
-                <Route component={NotFound} />
-              
-            </Switch>
-          )}
-        </Layout>
+          <Route path="/search" exact>
+            <Search />
+          </Route>
+
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="*" component={NotFound} />
+        </Switch>
       </BrowserRouter>
     </div>
   );
 }
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    background: "#111",
-    // minHeight: "100vh",
-    lef: 0,
-    right: 0,
-    fontSize: " 62.5%",
-    fontFamily:
-      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
-  },
-}));
 
 export default App;

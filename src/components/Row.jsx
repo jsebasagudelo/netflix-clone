@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import propTypes from "prop-types";
-import "../components/styles/row.css";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import HighlightOffRoundedIcon from "@material-ui/icons/HighlightOffRounded";
 import movieTrailer from "movie-trailer";
 import YouTube from "react-youtube";
-import { base_url_Img as base_url } from "../utils/constant";
 import axios from "../Api";
+import "../components/styles/row.css";
+import { base_url_Img as base_url } from "../utils/constant";
+
+
+// design pattern: Render Props
 const Row = ({ titleMovie, id, fetchUrl, with_genres = 0 }) => {
   const [movies, setMovies] = useState([]);
   const [trailerPath, setTrailerPath] = useState("");
@@ -16,7 +19,7 @@ const Row = ({ titleMovie, id, fetchUrl, with_genres = 0 }) => {
   const [title, setTitle] = useState("");
   const [original_title, setOriginal_title] = useState("");
   const classes = useStyles();
-
+  
   const handlePagination = (e) => {
     const el = e.target.parentElement.className.split(" ");
     const scrollContainer = document.querySelector(`.${el[1]}`);
@@ -28,6 +31,7 @@ const Row = ({ titleMovie, id, fetchUrl, with_genres = 0 }) => {
     }
   };
   const handleClick = (movie) => {
+    
     if (trailerPath === "") {
       movieTrailer(
         movie?.name ||
@@ -63,20 +67,19 @@ const Row = ({ titleMovie, id, fetchUrl, with_genres = 0 }) => {
         ? `${fetchUrl}${"&with_genres="}${with_genres}${"&sort_by=vote_average.desc&vote_count.gte=20"}`
         : fetchUrl;
 
-    console.log("url:" + fetchUrl + " genero:" + with_genres +" componente:" +id);
+    console.log(
+      "url:" + fetchUrl + " genero:" + with_genres + " componente:" + id
+    );
     const fetchData = async () => {
       const request = await axios.get(fetchUrl);
       setMovies(request.data.results);
       return request;
     };
     fetchData();
-    //console.log(JSON.stringify(movies));
-  }, [fetchUrl+with_genres]);
+   
+  }, [fetchUrl + with_genres]);
 
-  const _onReady = (event) => {
-    // access to player in all event handlers via event.target
-    event.target.pauseVideo();
-  };
+
 
   const opts = {
     playerVars: {
@@ -87,6 +90,7 @@ const Row = ({ titleMovie, id, fetchUrl, with_genres = 0 }) => {
   };
 
   return (
+    
     <div className={classes.root}>
       <h2 className={classes.row__title}>{titleMovie}</h2>
       <div className="row">
@@ -104,19 +108,17 @@ const Row = ({ titleMovie, id, fetchUrl, with_genres = 0 }) => {
             <ChevronRightIcon />
           </span>
           {movies.map((movie) => {
-             
             return (
-                 (movie.backdrop_path)&&
-                ( <img
+              movie.backdrop_path && (
+                <img
                   key={movie.id}
                   className={classes.row__poster}
                   src={base_url + movie.backdrop_path}
                   alt={movie.name}
                   onClick={() => handleClick(movie)}
-                />)
-             
-                );
-
+                />
+              )
+            );
           })}
         </div>
 
@@ -160,12 +162,17 @@ const Row = ({ titleMovie, id, fetchUrl, with_genres = 0 }) => {
 };
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    background:"#111",
+    height: "30vh"
+  },
   row__title: {
-    fontSize: "2vw",
-    fontWeight: "500",
+    fontSize: "1.75rem",
+    fontWeight: "400",
     textShadow: "2px 2px 4px rgba(0,0,0,.25)",
     paddingLeft: "3vw",
+    color:"#fff",
+    lineHeight: "1.2"
   },
   row: {
     padding: 0,
@@ -182,7 +189,7 @@ const useStyles = makeStyles((theme) => ({
   },
   row__poster: {
     width: "auto",
-    height: "10vw",
+    height: "9vw",
     objectFit: "contain",
     maxHeight: "15rem",
     minHeight: "8rem",
@@ -191,6 +198,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "1rem",
     cursor: "pointer",
     transition: "all 0.2s",
+ 
   },
   info__overlay: {
     position: "fixed",

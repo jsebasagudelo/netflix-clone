@@ -5,8 +5,6 @@ const useGetBanner = () =>{
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [movieBanner, setMovieBanner] = useState({});
-
-
     const getBanner =async   () => {
         try {
           const request = await   axios.get(requests.fetchNetflixOriginals);     
@@ -15,7 +13,7 @@ const useGetBanner = () =>{
             //console.log("banner"+JSON.stringify(request.data.results[random]))
             
             setMovieBanner(request.data.results[random]); 
-           // console.log("banner: "+JSON.stringify(movieBanner))
+    
             setLoading(true);   
             return request       
           }            

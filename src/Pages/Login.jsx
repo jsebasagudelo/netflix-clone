@@ -1,19 +1,25 @@
 import React, { useState } from "react";
-import { Button, makeStyles, Typography } from "@material-ui/core";
+import {  Typography } from "@material-ui/core";
 import logo from "../assets/images/netflix-logo.png";
 import HeroBanner from "../assets/images/HeroBanner.jpg";
-import { StyledButton, StyledInput } from "../styled/styledcomponents";
+import { StyledInput } from "../styled/Input";
+import { StyledButton } from "../styled/Button";
 import SignUp from "./SignUp";
+import useStylesLogin from "../styles/components/StylesLogin";
 
 const Login = () => {  
 
-  
-  const classes = useStyles();
-  const [signIn, setSignIn] = useState(false);
+  const handleLogin=() =>{
+     setSignIn(false)
+  }  
+  const classes = useStylesLogin();
+  const [signIn, setSignIn] = useState(true);
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{
+      backgroundImage: `url(${HeroBanner})`
+    }}>
       <img src={logo} className={classes.image} alt="logo" />
-      <StyledButton className={classes.session}>Iniciar session</StyledButton>
+      <StyledButton className={classes.session}  onClick={handleLogin}>Iniciar session</StyledButton>
       <div className={classes.info}>
         {!signIn ? (
           <SignUp />
@@ -40,50 +46,6 @@ const Login = () => {
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    position: "relative",
-    height: "100vh",
-    backgroundImage: `url(${HeroBanner})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    objectFit: "contain",
-  },
-  session: {
-    position: "fixed",
-    zIndex: 15,
-    right: 20,
-    top: 20,
-  },
-  image: {
-    position: "fixed",
-    top: 0,
-    left: 20,
-    width: "150px",
-    cursor: "pointer",
-  },
-  info: {
-    zIndex: 15,
-    color: "#fff",
-    textAlign: "center",
-    "& h4": {
-      fontWeight: 800,
-    },
-    "& h5": {
-      fontWeight: 400,
-    },
-  },
-  inputBlock: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    minWidth: "700px",
-    marginTop: theme.spacing(4),
-  },
-}));
+
 
 export default Login;

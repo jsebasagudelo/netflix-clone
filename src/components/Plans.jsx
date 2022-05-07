@@ -1,6 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import React from 'react'
-import { StyledButton } from '../styled/styledcomponents';
+import { StyledButton } from '../styled/Button';
 
 const Plans = ({cost,children, color,wide}) => {
     const classes = useStyles();

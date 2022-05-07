@@ -32,3 +32,12 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=a3f405c037b3877af91a2640453
 
 
 
+actions(acciones) en realidad y a la función que está en el archivo index.js llamada setPokemos es un action creator(creador de acción)
+
+-Como norma los actions son constantes de solo lectura que vamos a importar para ser usadas en su action creator y en su reducer correspondientes.
+-Los action creator son funciones que regresan un objeto, que por norma tienen como estructura:
+{ type: MI_ACTION }
+pero además se les pueden pasar datos útiles(es a lo que llamamos payload) y, por tanto, el creador de acción de la clase queda así:
+
+
+

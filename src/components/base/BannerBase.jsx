@@ -26,9 +26,11 @@ const BannerBase = ({children}) => {
           {
               truncate(movieBanner?.overview,160)
           }
+        {children}
+
        
     </Typography>
-
+   
 
     </header>
   );
