@@ -39,9 +39,10 @@ const useStyleGenero = makeStyles((theme) => ({
         color: "#fff",
       },
       genero: {
-        display: "flex",
-        gap: 30 /* distancia*/,
+        //display: "flex",
+        //: 30 /* distancia*/,
         color: "#fff",
+        marginLeft:theme.spacing(4)
         
       },
       title:{

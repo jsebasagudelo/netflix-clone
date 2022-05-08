@@ -1,10 +1,18 @@
 import { Grid } from "@material-ui/core";
 import MovieCard from "./MovieCard";
-
-
 const SearchedResults = ({ movies }) => {
+   
+  const styles={
+    main:{
+      marginBottom: "60px"
+    },
+    grid:{
+      background:"#111",padding:"20px"
+    }
+  }
+
   return (
-    <Grid container style={{background:"#111",padding:"20px"}}>
+    <Grid container style={styles.grid}>
       {movies.map((d, idx) => (
         <Grid
           item
@@ -13,8 +21,7 @@ const SearchedResults = ({ movies }) => {
           sm={4}
           md={3}
           lg={2}
-          style={{ marginBottom: "60px" }}
-        >
+          style={styles.main}        >
            <MovieCard movie={d} />
         </Grid>
       ))}

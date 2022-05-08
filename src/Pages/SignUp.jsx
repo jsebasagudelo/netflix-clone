@@ -74,13 +74,8 @@ const SignUp = () => {
         />
 
         <span
-          className="error-message"
-          style={{
-            color: "#e50914",
-            fontSize: "16px",
-            lineHeight: "1.2",
-            marginBottom: "10px",
-          }}
+          className={classes.errormessage}
+         
         >
           {errorMessage}
         </span>

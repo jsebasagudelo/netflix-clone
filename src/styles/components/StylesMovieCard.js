@@ -116,6 +116,7 @@ const useStyleMovieCard = makeStyles((theme) => ({
       fontSize: "2rem",
       zIndex: "50",
       cursor: "pointer",
+      color:"#fff" 
     },
     info__overlay__videoBox: {
       width: "100%",
@@ -134,6 +135,10 @@ const useStyleMovieCard = makeStyles((theme) => ({
       alignItems: "center",
     },
     info__overlay__text: {
+      padding: "2rem 4rem 4rem",
+      color: "#fff",
+    },
+    info__overlay__youtube_icon: {
       padding: "2rem 4rem 4rem",
       color: "#fff",
     },

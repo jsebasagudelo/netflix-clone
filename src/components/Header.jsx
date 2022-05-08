@@ -42,6 +42,18 @@ const Header = () => {
     history.push("/")
   }
 
+  const handlePeliculas = () => {
+     history.push("/genero")
+  }
+  const handleProfile = () => {
+    history.push("/profile")
+ }
+
+  const handleMyList= () => {
+    history.push("/mylist")
+ }
+
+
   useEffect(() => {
     window.addEventListener("scroll", hideHeader);
     return () => window.removeEventListener("scroll", hideHeader);
@@ -59,10 +71,10 @@ const Header = () => {
           <IconButton onClick={handleHome}>
             <img src={logo} al="logo" className={classes.logo} />
           </IconButton>
-          <Button color="inherit" variant="text" onClick={ ()=>  history.push("/genero") }  >
+          <Button color="inherit" variant="text" onClick={handlePeliculas }  >
             Peliculas
           </Button>
-          <Button color="inherit" variant="text" onClick={ ()=>  history.push("/mylist") }>
+          <Button color="inherit" variant="text" onClick={ handleMyList}>
             Mi Lista
           </Button>
     
@@ -88,7 +100,7 @@ const Header = () => {
             variant="square"
                src={avatar}
             style={{ cursor: "pointer" }}
-            onClick={() => history.push("/profile")}
+            onClick={handleProfile}
           />
            
         </div>

@@ -1,13 +1,11 @@
 import React from "react";
 import { func, string } from "prop-types";
-import { useHistory } from "react-router-dom";
+
 import useStylesError from "../styles/components/StyleError";
 import { Grid, Typography } from "@material-ui/core";
 
 const Error = ({ title, message }) => {
   const classes = useStylesError();
-  const history = useHistory();
-
 
 
   return (

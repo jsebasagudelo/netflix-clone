@@ -1,31 +1,21 @@
 import React from "react";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import { Typography, makeStyles } from "@material-ui/core/";
+import { Typography } from "@material-ui/core/";
 import { Link, withRouter } from "react-router-dom";
+import { StyledButton } from "../../styled/Button";
 const Back = () => {
-  const classes = useStyles();
+  
 
   return (
     <div>
       <Typography variant="h6" gutterBottom>
-        <Link className={classes.link} to={{ pathname: "/" }}>
-          <KeyboardArrowLeft />
-          <span className={classes.text}>Back to Home</span>
+        <Link  to={{ pathname: "/" }}>
+        <StyledButton>
+            Go Home
+          </StyledButton>
         </Link>
       </Typography>
     </div>
   );
 };
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  link: {
-    textDecoration: "none",
-    color: "inherit",
-  },
-  text: {
-    display: "inline-block",
-    verticalAlign: "text-bottom",
-  },
-}));
 
 export default withRouter(Back);

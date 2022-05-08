@@ -35,6 +35,12 @@ const useStylesSignUp= makeStyles((theme) => ({
           textDecoration: "underline",
         },
       },
+      errormessage:{
+        color: "#e50914",
+            fontSize: "16px",
+            lineHeight: "1.2",
+            marginBottom: "10px",
+      }
 
   }))
 

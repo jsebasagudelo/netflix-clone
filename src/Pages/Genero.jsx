@@ -1,4 +1,4 @@
-import { Typography, MenuItem } from "@material-ui/core";
+import { Typography, MenuItem, FormControl } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import Select from "@material-ui/core/Select";
 import axios from "../Api";
@@ -13,7 +13,6 @@ const Genero = () => {
   const classes = useStyleGenero();
   const [generlist, setGenerlist] = useState([]);
   const [value, setValue] = useState(0);
-
   const [movie, setMovie] = useState({});
   const { getBanner } = useGetBanner();
   useEffect(() => {
@@ -30,24 +29,11 @@ const Genero = () => {
 
   const handleChange = (event) => {
     let id = event.target.value;
-    console.log(event);
+
     if (event.target.value == 0) {
       id = genero_accion;
     }
     setValue(id);
-  };
-
-  const fetchGenre = async (id) => {
-    console.log(id);
-    const request = await axios.get(
-      `${
-        requests.fetchGender
-      }${"&with_genres="}${id}${"&sort_by=vote_average.desc&vote_count.gte=10"}`
-    );
-
-    setMovie(request.data.results);
-
-    return request;
   };
 
   return (
@@ -55,19 +41,19 @@ const Genero = () => {
       <Layout>
         <div className={classes.contenedor}>
           <BannerBase></BannerBase>
-
-          <div className={classes.root}>
-            {/* movie.length > 0 ? <MovieList key={value} data={movie} /> : ""*/}
-            <Select
+          <div className={classes.genero}>
+            <FormControl sx={{ m: 1, minWidth: 80 }}>
+              <Select
                 MenuProps={MenuProps}
+                id="demo-simple-select-autowidth"
+                value={value}
                 className={classes.select}
                 inputProps={{
                   classes: {
                     icon: classes.icon,
-                    root: classes.root,
                   },
                 }}
-                value={value}
+                autoWidth
                 onChange={handleChange}
               >
                 {generlist.map((genero) => (
@@ -75,10 +61,12 @@ const Genero = () => {
                     {genero.name}
                   </MenuItem>
                 ))}
-             
                 <MenuItem value="0">Generos</MenuItem>
               </Select>
-            
+            </FormControl>
+          </div>
+
+          <div className={classes.root}>
             <Row
               id="1"
               titleMovie=""
@@ -98,7 +86,7 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
+      width: 150,
     },
   },
 };

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import movieTrailer from "movie-trailer";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -16,7 +15,6 @@ const Mylist = () => {
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [original_title, setOriginal_title] = useState("");
-
   const {movie} =useSelector( (state) =>({...state}) )
 
   

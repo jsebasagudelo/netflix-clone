@@ -1,16 +1,13 @@
 import React from "react";
-import { StyledButton } from "../styled/Button";
-import { useHistory } from "react-router-dom";
 import useStylesNotFound from "../styles/components/StyleNotFound";
-import { Container, Grid, Typography } from "@material-ui/core";
+import {  Grid, Typography } from "@material-ui/core";
+import Back from "./common/Back";
 
 const NotFound = () => {
   const classes = useStylesNotFound();
-  const history = useHistory();
 
-  const handleHome = () => {
-    history.push("/")
-  }
+
+
 
 
   return (
@@ -35,7 +32,8 @@ const NotFound = () => {
           </Typography>
         </Grid>
         <Grid item>
-          <StyledButton onClick={handleHome}>Go Home</StyledButton>
+         
+          <Back/>
         </Grid>
         <Grid item>
           <Typography variant="h4" className={classes.error}>

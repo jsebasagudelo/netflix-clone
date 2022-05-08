@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Error from "../components/Error";
 
-
 export const errorBoundary = (WrappedComponent) => {
   const resetError = (context) => context.setState({ error: false });
 

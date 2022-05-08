@@ -12,6 +12,10 @@ const Layout = ({ children }) => {
  //const userName = "";
   const history = useHistory();
 
+  const styles = {
+    main:{ background:"#111",height:"100vh" }
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
@@ -24,7 +28,7 @@ const Layout = ({ children }) => {
   }, []);
 
   return (
-    <div style={{background:"#111",height:"100vh"}}>
+    <div style={styles.main}>
       {!userName ? (
         <Login />
       ) : (

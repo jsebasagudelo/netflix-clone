@@ -37,6 +37,12 @@ const Home = () => {
               titleMovie="Documentaries"
               fetchUrl={requests.fetchDocumentaries}
             />
+
+<Row
+              id="5"
+              titleMovie="Horror Movies"
+              fetchUrl={requests.fetchHorrorMovies}
+            />
           </div>
         </Suspense>
     </Layout>

@@ -19,7 +19,7 @@ const MovieCard = ({ movie, poster = "" }) => {
   const [original_title, setOriginal_title] = useState("");
   const { backdrop_path, poster_path, title, name } = movie;
   const [modalShow, setModalShow] = useState(false);
-  const [modalShowVideo, setModalVideo] = useState(false);
+
   const dispatch = useDispatch();
   const onClose = () => {
     setModalShow(false);
@@ -31,12 +31,6 @@ const MovieCard = ({ movie, poster = "" }) => {
     dispatch(setMoviesFavorites(movie));
   };
 
-  const onCloseVideo = () => {
-    setModalVideo(false);
-  };
-  const onShowVideo = () => {
-    setModalVideo(true);
-  };
 
 
   const opts = {
@@ -67,7 +61,7 @@ const MovieCard = ({ movie, poster = "" }) => {
             setOriginal_title(movie?.original_name);
           })
           .catch((error) => {
-            // handleError();
+           
             console.log(error);
           });
       } else {
@@ -77,7 +71,7 @@ const MovieCard = ({ movie, poster = "" }) => {
         setOriginal_title("");
         document.querySelector("body").style.overflow = "auto";
       }
-      setModalVideo(true);
+     
     };
    
 
@@ -135,15 +129,15 @@ const MovieCard = ({ movie, poster = "" }) => {
                 className={classes.info__overlay__btnClose}
               >
                 <HighlightOffRoundedIcon
-                  style={{ fill: "#fff", fontSize: 40 }}
+                 className={classes.info__overlay__btnClose}
+                 
                 />
               </span>
               <div className={classes.info__overlay_videoBox}>
                 <YouTube
                   className={classes.info__overlay__youtube}
                   videoId={trailerPath}
-                  opts={opts}
-                  title={"string"}
+                  opts={opts}                
                 />
                 <div className={classes.info__overlay__iconBox}></div>
               </div>
@@ -164,7 +158,6 @@ const MovieCard = ({ movie, poster = "" }) => {
     </Card>
   );
 };
-
 
 MovieCard.propTypes = {
   movie: propTypes.array,

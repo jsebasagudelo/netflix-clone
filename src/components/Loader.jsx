@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import portal from "../assets/static/images/portal.gif";
+
 import CircularProgress from '@material-ui/core/CircularProgress';
 const Loader = () => {
   const classes = useStyles();
