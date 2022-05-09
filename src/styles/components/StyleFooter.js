@@ -6,12 +6,22 @@ const useStyleFooter = makeStyles((theme) => ({
       background: "#111",
       borderBottom: `8px solid #222`,
     },
+    footer:{
+      backgroundColor: "#111",
+      paddingTop: "15rem",
+      paddingBottom: "4rem",    
+      
+      justifyContent:"center",
+      display:"flex"
+    },
     text: {
       color: "#111 !important",
       fontSize: "18px",
     },
     link__container: {
-      padding: "50px 0",
+       textDecoration: "none", 
+         color: "red",
+         transition: "all .3s",
     },
     copyright: {
       color: "#fff",
