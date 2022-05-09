@@ -15,13 +15,13 @@ Technologies
 - https://www.themoviedb.org/
 
 
-## Credenciales Neflix
+## Credenciales Netflix
 usuario: test@hotmail.com
 clave : 123456
 
 
 ## PATRONES DE DISEÑO
-Render Props, Provider, Style Component
+Render Props, Redux, Style Component
 
 
 ## Arquitectura
